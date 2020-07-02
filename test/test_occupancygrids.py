@@ -2,8 +2,7 @@ import unittest
 import numpy as np
 import ros_numpy
 from nav_msgs.msg import OccupancyGrid, MapMetaData
-
-from io import BytesIO
+from rclpy.serialization import serialize_message
 
 class TestOccupancyGrids(unittest.TestCase):
     def test_masking(self):
@@ -32,12 +31,13 @@ class TestOccupancyGrids(unittest.TestCase):
 
         self.assertEqual(msg.info, msg2.info)
 
-        io1 = BytesIO()
-        io2 = BytesIO()
-        msg.serialize(io1)
-        msg2.serialize(io2)
+        msg_ser = serialize_message(msg)
+        msg2_ser = serialize_message(msg2)
 
-        self.assertEqual(io1.getvalue(), io2.getvalue(), "Message serialization survives round-trip")
+        self.assertEqual(
+            msg_ser,
+            msg2_ser,
+            "Message serialization survives round-trip")
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,24 +1,20 @@
 import functools
-import genpy
 import collections
-from . import numpy_msg
 
 _to_numpy = {}
 _from_numpy = {}
 
 def converts_to_numpy(msgtype, plural=False):
-	assert issubclass(msgtype, genpy.Message)
 	def decorator(f):
 		_to_numpy[msgtype, plural] = f
-		_to_numpy[numpy_msg(msgtype), plural] = f
+		#_to_numpy[numpy_msg(msgtype), plural] = f
 		return f
 	return decorator
 
 def converts_from_numpy(msgtype, plural=False):
-	assert issubclass(msgtype, genpy.Message)
 	def decorator(f):
 		_from_numpy[msgtype, plural] = f
-		_from_numpy[numpy_msg(msgtype), plural] = f
+		#_from_numpy[numpy_msg(msgtype), plural] = f
 		return f
 	return decorator
 

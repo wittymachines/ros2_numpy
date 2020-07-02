@@ -1,14 +1,13 @@
 import unittest
 import numpy as np
 import ros_numpy
-
-from tf import transformations
+from ros_numpy import transformations
 
 from geometry_msgs.msg import Vector3, Quaternion, Transform, Point, Pose
 
 class TestGeometry(unittest.TestCase):
     def test_point(self):
-        p = Point(1, 2, 3)
+        p = Point(x=1., y=2., z=3.)
 
         p_arr = ros_numpy.numpify(p)
         np.testing.assert_array_equal(p_arr, [1, 2, 3])
@@ -21,7 +20,7 @@ class TestGeometry(unittest.TestCase):
         self.assertEqual(p, ros_numpy.msgify(Point, p_arrh * 2))
 
     def test_vector3(self):
-        v = Vector3(1, 2, 3)
+        v = Vector3(x=1., y=2., z=3.)
 
         v_arr = ros_numpy.numpify(v)
         np.testing.assert_array_equal(v_arr, [1, 2, 3])
@@ -37,8 +36,11 @@ class TestGeometry(unittest.TestCase):
 
     def test_transform(self):
         t = Transform(
-            translation=Vector3(1, 2, 3),
-            rotation=Quaternion(*transformations.quaternion_from_euler(np.pi, 0, 0))
+            translation=Vector3(x=1., y=2., z=3.),
+            rotation=Quaternion(
+                **dict(
+                    zip(['x', 'y', 'z', 'w'],
+                        transformations.quaternion_from_euler(np.pi, 0, 0))))
         )
 
         t_mat = ros_numpy.numpify(t)
@@ -57,8 +59,11 @@ class TestGeometry(unittest.TestCase):
 
     def test_pose(self):
         t = Pose(
-            position=Point(1.0, 2.0, 3.0),
-            orientation=Quaternion(*transformations.quaternion_from_euler(np.pi, 0, 0))
+            position=Point(x=1.0, y=2.0, z=3.0),
+            orientation=Quaternion(
+                **dict(
+                    zip(['x', 'y', 'z', 'w'],
+                    transformations.quaternion_from_euler(np.pi, 0, 0))))
         )
 
         t_mat = ros_numpy.numpify(t)

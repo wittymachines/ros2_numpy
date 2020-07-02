@@ -17,7 +17,7 @@ name_to_dtypes = {
 	"bgra16":  (np.uint16, 4),
 	"mono8":   (np.uint8,  1),
 	"mono16":  (np.uint16, 1),
-	
+
     # for bayer image (based on cv_bridge.cpp)
 	"bayer_rggb8":	(np.uint8,  1),
 	"bayer_bggr8":	(np.uint8,  1),
@@ -63,13 +63,13 @@ name_to_dtypes = {
 def image_to_numpy(msg):
 	if not msg.encoding in name_to_dtypes:
 		raise TypeError('Unrecognized encoding {}'.format(msg.encoding))
-	
+
 	dtype_class, channels = name_to_dtypes[msg.encoding]
 	dtype = np.dtype(dtype_class)
 	dtype = dtype.newbyteorder('>' if msg.is_bigendian else '<')
 	shape = (msg.height, msg.width, channels)
 
-	data = np.fromstring(msg.data, dtype=dtype).reshape(shape)
+	data = np.frombuffer(msg.data, dtype=dtype).reshape(shape)
 	data.strides = (
 		msg.step,
 		dtype.itemsize * channels,
@@ -113,7 +113,7 @@ def numpy_to_image(arr, encoding):
 	im.data = contig.tostring()
 	im.step = contig.strides[0]
 	im.is_bigendian = (
-		arr.dtype.byteorder == '>' or 
+		arr.dtype.byteorder == '>' or
 		arr.dtype.byteorder == '=' and sys.byteorder == 'big'
 	)
 

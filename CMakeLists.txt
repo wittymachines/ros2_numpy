@@ -3,7 +3,6 @@ project(ros_numpy)
 
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
-find_package(rclpy REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
@@ -12,9 +11,13 @@ find_Package(tf2 REQUIRED)
 ament_python_install_package(${PROJECT_NAME})
 
 if(BUILD_TESTING)
+  find_package(rclpy REQUIRED)
   find_package(ament_cmake_nose REQUIRED)
-  #test_geometry.py  test_images.py  test_occupancygrids.py
+
   ament_add_nose_test(pointclouds test/test_pointclouds.py)
+  ament_add_nose_test(images test/test_images.py)
+  ament_add_nose_test(occupancygrids test/test_occupancygrids.py)
+  ament_add_nose_test(geometry test/test_geometry.py)
 endif()
 
 ##############
