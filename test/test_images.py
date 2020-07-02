@@ -37,9 +37,11 @@ class TestImages(unittest.TestCase):
 
     def test_bad_encodings(self):
         mono_arr = np.random.randint(0, 256, size=(240, 360)).astype(np.uint8)
-        mono_arrf = np.random.randint(0, 256, size=(240, 360)).astype(np.float32)
+        mono_arrf = \
+          np.random.randint(0, 256, size=(240, 360)).astype(np.float32)
         rgb_arr = np.random.randint(0, 256, size=(240, 360, 3)).astype(np.uint8)
-        rgb_arrf = np.random.randint(0, 256, size=(240, 360, 3)).astype(np.float32)
+        rgb_arrf = \
+          np.random.randint(0, 256, size=(240, 360, 3)).astype(np.float32)
 
         with self.assertRaises(TypeError):
             msg = ros_numpy.msgify(Image, rgb_arr, encoding='mono8')

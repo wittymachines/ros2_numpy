@@ -45,7 +45,8 @@ class TestGeometry(unittest.TestCase):
 
         t_mat = ros_numpy.numpify(t)
 
-        np.testing.assert_allclose(t_mat.dot([0, 0, 1, 1]), [1.0, 2.0, 2.0, 1.0])
+        np.testing.assert_allclose(
+            t_mat.dot([0, 0, 1, 1]), [1.0, 2.0, 2.0, 1.0])
 
         msg = ros_numpy.msgify(Transform, t_mat)
 
@@ -68,7 +69,8 @@ class TestGeometry(unittest.TestCase):
 
         t_mat = ros_numpy.numpify(t)
 
-        np.testing.assert_allclose(t_mat.dot([0, 0, 1, 1]), [1.0, 2.0, 2.0, 1.0])
+        np.testing.assert_allclose(
+            t_mat.dot([0, 0, 1, 1]), [1.0, 2.0, 2.0, 1.0])
 
         msg = ros_numpy.msgify(Pose, t_mat)
 
