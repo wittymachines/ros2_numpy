@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-import ros_numpy
+import ros2_numpy as rnp
 from sensor_msgs.msg import PointCloud2, PointField, Image
 
 class TestPointClouds(unittest.TestCase):
@@ -33,11 +33,11 @@ class TestPointClouds(unittest.TestCase):
             ('x', np.float32),
             ('y', np.float32)
         ])
-        conv_fields = ros_numpy.msgify(PointField, dtype, plural=True)
+        conv_fields = rnp.msgify(PointField, dtype, plural=True)
         self.assertSequenceEqual(fields, conv_fields,
                                  'dtype->Pointfield Failed with simple values')
 
-        conv_dtype = ros_numpy.numpify(fields, point_step=8)
+        conv_dtype = rnp.numpify(fields, point_step=8)
         self.assertSequenceEqual(dtype, conv_dtype,
                                  'dtype->Pointfield Failed with simple values')
 
@@ -57,11 +57,11 @@ class TestPointClouds(unittest.TestCase):
             ('vectors', np.float32, (3,))
         ])
 
-        conv_fields = ros_numpy.msgify(PointField, dtype, plural=True)
+        conv_fields = rnp.msgify(PointField, dtype, plural=True)
         self.assertSequenceEqual(fields, conv_fields,
                                  'dtype->Pointfield with inner dimensions')
 
-        conv_dtype = ros_numpy.numpify(fields, point_step=8)
+        conv_dtype = rnp.numpify(fields, point_step=8)
         self.assertEqual(dtype, conv_dtype,
                          'Pointfield->dtype with inner dimensions')
 
@@ -69,16 +69,16 @@ class TestPointClouds(unittest.TestCase):
     def test_roundtrip(self):
 
         points_arr = self.makeArray(100)
-        cloud_msg = ros_numpy.msgify(PointCloud2, points_arr)
-        new_points_arr = ros_numpy.numpify(cloud_msg)
+        cloud_msg = rnp.msgify(PointCloud2, points_arr)
+        new_points_arr = rnp.numpify(cloud_msg)
 
         np.testing.assert_equal(points_arr, new_points_arr)
 
     def test_roundtrip_numpy(self):
 
         points_arr = self.makeArray(100)
-        cloud_msg = ros_numpy.msgify(PointCloud2, points_arr)
-        new_points_arr = ros_numpy.numpify(cloud_msg)
+        cloud_msg = rnp.msgify(PointCloud2, points_arr)
+        new_points_arr = rnp.numpify(cloud_msg)
 
         np.testing.assert_equal(points_arr, new_points_arr)
 

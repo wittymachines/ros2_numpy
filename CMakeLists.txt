@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ros_numpy)
+project(ros2_numpy)
 
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)

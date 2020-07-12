@@ -2,22 +2,17 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd"
             schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros_numpy</name>
+  <name>ros2_numpy</name>
   <version>0.0.3</version>
   <description>A collection of conversion functions for extracting numpy arrays from messages</description>
 
-  <!-- ROS 1 -->
+  <author email="wieser@mit.edu">Eric Wieser</author>
+  <!-- ROS 1 ros_numpy -->
   <maintainer email="wieser@mit.edu">Eric Wieser</maintainer>
   <!-- ROS 2 -->
   <maintainer email="tom@boxrobotics.ai">Tom Panzarella</maintainer>
 
   <license>MIT</license>
-
-  <url type="website">http://wiki.ros.org/ros_numpy</url>
-  <url type="repository">https://github.com/eric-wieser/ros_numpy</url>
-  <url type="bugtracker">https://github.com/eric-wieser/ros_numpy/issues</url>
-
-  <author email="wieser@mit.edu">Eric Wieser</author>
 
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
