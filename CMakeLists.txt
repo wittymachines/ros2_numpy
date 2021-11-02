@@ -17,6 +17,7 @@ if(BUILD_TESTING)
   ament_add_nose_test(images test/test_images.py)
   ament_add_nose_test(occupancygrids test/test_occupancygrids.py)
   ament_add_nose_test(geometry test/test_geometry.py)
+  ament_add_nose_test(quaternions test/test_quat.py)
 endif()
 
 ##############
