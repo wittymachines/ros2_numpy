@@ -1,4 +1,4 @@
-Forthcoming
+2.0.5 (2022-02-24)
 -----------
 * Ported to `tf_transformations <https://github.com/DLu/tf_transformations>`_
 
