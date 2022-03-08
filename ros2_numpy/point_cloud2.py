@@ -172,9 +172,14 @@ def array_to_pointcloud2(cloud_arr, stamp=None, frame_id=None):
     # over each byte in python.
     # Here we create an array.array object using a memoryview, limiting copying and
     # increasing performance.
-    memory_view = memoryview(cloud_arr).cast("B")
+    memory_view = memoryview(cloud_arr)
+    if memory_view.nbytes > 0:
+        array_bytes = memory_view.cast("B")
+    else:
+        # Casting raises a TypeError if the array has no elements
+        array_bytes = b""
     as_array = array.array("B")
-    as_array.frombytes(memory_view)
+    as_array.frombytes(array_bytes)
     cloud_msg.data = as_array
     return cloud_msg
 
