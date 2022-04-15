@@ -39,6 +39,7 @@ __docformat__ = "restructuredtext en"
 
 from .registry import converts_from_numpy, converts_to_numpy
 
+import array
 import numpy as np
 from sensor_msgs.msg import PointCloud2, PointField
 
@@ -165,7 +166,21 @@ def array_to_pointcloud2(cloud_arr, stamp=None, frame_id=None):
     cloud_msg.is_dense = \
       all([np.isfinite(
             cloud_arr[fname]).all() for fname in cloud_arr.dtype.names])
-    cloud_msg.data = cloud_arr.tostring()
+
+    # The PointCloud2.data setter will create an array.array object for you if you don't
+    # provide it one directly. This causes very slow performance because it iterates
+    # over each byte in python.
+    # Here we create an array.array object using a memoryview, limiting copying and
+    # increasing performance.
+    memory_view = memoryview(cloud_arr)
+    if memory_view.nbytes > 0:
+        array_bytes = memory_view.cast("B")
+    else:
+        # Casting raises a TypeError if the array has no elements
+        array_bytes = b""
+    as_array = array.array("B")
+    as_array.frombytes(array_bytes)
+    cloud_msg.data = as_array
     return cloud_msg
 
 def merge_rgb_fields(cloud_arr):
