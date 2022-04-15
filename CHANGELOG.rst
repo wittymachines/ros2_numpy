@@ -1,6 +1,17 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package ros2_numpy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2.0.6 (2022-04-15)
+------------------
+* Improve speed of msgify(point_cloud_2_np) by 115x (`#3 <https://github.com/Box-Robotics/ros2_numpy/pull/3>`_)
+* Contributors: Alex Thiel
+
+
 2.0.5 (2022-02-24)
------------
+------------------
 * Ported to `tf_transformations <https://github.com/DLu/tf_transformations>`_
+* Contributors: Tom Panzarella
 
 
 2.0.4 (2021-11-02)
