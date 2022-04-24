@@ -152,7 +152,7 @@ def array_to_pointcloud2(cloud_arr, stamp=None, frame_id=None):
     cloud_msg.height = cloud_arr.shape[0]
     cloud_msg.width = cloud_arr.shape[1]
     cloud_msg.fields = dtype_to_fields(cloud_arr.dtype)
-    cloud_msg.is_bigendian = sys.byteorder != 'little',
+    cloud_msg.is_bigendian = sys.byteorder != 'little'
     cloud_msg.point_step = cloud_arr.dtype.itemsize
     cloud_msg.row_step = cloud_msg.point_step*cloud_arr.shape[1]
     cloud_msg.is_dense = \
