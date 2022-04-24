@@ -79,7 +79,7 @@ def fields_to_dtype(fields, point_step):
             dtype = np.dtype((dtype, f.count))
 
         np_dtype_list.append((f.name, dtype))
-        offset += type_mappings[f.datatype].itemsize * f.count
+        offset += pftype_to_nptype[f.datatype].itemsize * f.count
 
     # might be extra padding between points
     while offset < point_step:
