@@ -37,6 +37,8 @@ Functions for working with PointCloud2.
 
 __docformat__ = "restructuredtext en"
 
+import sys
+
 from .registry import converts_from_numpy, converts_to_numpy
 
 import array
@@ -59,15 +61,6 @@ type_mappings = [(PointField.INT8, np.dtype('int8')),
 pftype_to_nptype = dict(type_mappings)
 nptype_to_pftype = dict((nptype, pftype) for pftype, nptype in type_mappings)
 
-# sizes (in bytes) of PointField types
-pftype_sizes = {PointField.INT8: 1,
-                PointField.UINT8: 1,
-                PointField.INT16: 2,
-                PointField.UINT16: 2,
-                PointField.INT32: 4,
-                PointField.UINT32: 4,
-                PointField.FLOAT32: 4,
-                PointField.FLOAT64: 8}
 
 @converts_to_numpy(PointField, plural=True)
 def fields_to_dtype(fields, point_step):
@@ -87,7 +80,7 @@ def fields_to_dtype(fields, point_step):
             dtype = np.dtype((dtype, f.count))
 
         np_dtype_list.append((f.name, dtype))
-        offset += pftype_sizes[f.datatype] * f.count
+        offset += pftype_to_nptype[f.datatype].itemsize * f.count
 
     # might be extra padding between points
     while offset < point_step:
@@ -160,7 +153,7 @@ def array_to_pointcloud2(cloud_arr, stamp=None, frame_id=None):
     cloud_msg.height = cloud_arr.shape[0]
     cloud_msg.width = cloud_arr.shape[1]
     cloud_msg.fields = dtype_to_fields(cloud_arr.dtype)
-    cloud_msg.is_bigendian = False # assumption
+    cloud_msg.is_bigendian = sys.byteorder != 'little'
     cloud_msg.point_step = cloud_arr.dtype.itemsize
     cloud_msg.row_step = cloud_msg.point_step*cloud_arr.shape[1]
     cloud_msg.is_dense = \
