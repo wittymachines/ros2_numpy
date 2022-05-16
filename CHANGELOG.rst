@@ -2,6 +2,11 @@
 Changelog for package ros2_numpy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.7 (2022-05-16)
+------------------
+* Remove unneeded array and handle bigendian (`#4 <https://github.com/Box-Robotics/ros2_numpy/pull/4>`_)
+* Contributors: Florian Vahl
+
 2.0.6 (2022-04-15)
 ------------------
 * Improve speed of msgify(point_cloud_2_np) by 115x (`#3 <https://github.com/Box-Robotics/ros2_numpy/pull/3>`_)
