@@ -2,6 +2,11 @@
 Changelog for package ros2_numpy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.8 (2022-06-12)
+------------------
+* Update for ROS2 Humble (`#5 <https://github.com/Box-Robotics/ros2_numpy/pull/5>`_)
+* Contributors: Sean Kelly
+
 2.0.7 (2022-05-16)
 ------------------
 * Remove unneeded array and handle bigendian (`#4 <https://github.com/Box-Robotics/ros2_numpy/pull/4>`_)
