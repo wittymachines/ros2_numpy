@@ -2,6 +2,11 @@
 Changelog for package ros2_numpy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.9 (2023-01-03)
+------------------
+* Fix for numpy 1.24.0
+* Contributors: Florian Vahl
+
 2.0.8 (2022-06-12)
 ------------------
 * Update for ROS2 Humble (`#5 <https://github.com/Box-Robotics/ros2_numpy/pull/5>`_)
