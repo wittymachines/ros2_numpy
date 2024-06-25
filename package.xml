@@ -25,8 +25,8 @@
 
   <buildtool_depend>ament_cmake_python</buildtool_depend>
 
-  <test_depend>ament_cmake_nose</test_depend>
-  <test_depend>python3-nose</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>python3-pytest</test_depend>
   <test_depend>rclpy</test_depend>
 
   <export>
