@@ -2,6 +2,12 @@
 Changelog for package ros2_numpy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.11 (2024-06-25)
+------------------
+* Removed dependency on nose
+* Contributors: Tom Panzarella
+
+
 2.0.9 (2023-01-03)
 ------------------
 * Fix for numpy 1.24.0
